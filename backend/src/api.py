@@ -60,9 +60,17 @@ def root():
             "/whatsapp-command",
             "/duplicates/scan",
             "/duplicates/clean",
-            "/status"
+            "/status",
+            "/credentials"
         ]
     }
+
+
+@app.get("/credentials")
+def check_credentials():
+    """Diagnóstico seguro del estado de vinculación de credenciales y cuentas locales."""
+    from .config import get_credentials_status
+    return get_credentials_status()
 
 
 @app.get("/status")

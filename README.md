@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue.svg?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![n8n](https://img.shields.io/badge/n8n-Orchestration-FF6D5A.svg?logo=n8n&logoColor=white)](https://n8n.io)
-[![Tests](https://img.shields.io/badge/Tests-18%20Passed%20(100%25)-success.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-19%20Passed%20(100%25)-success.svg)]()
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ---
@@ -84,41 +84,81 @@ El bot soporta interacción bidireccional completa. Puedes enviarle cualquiera d
 
 ---
 
-## 🚀 Puesta en Marcha en 3 Pasos
+---
 
-### 1. Clonar y Configurar Entorno Virtual
+## ⚡ Puesta en Marcha Inmediata (1 Clic en Cualquier Computadora)
+
+El proyecto está preparado para funcionar de inmediato sin configuraciones complejas tras clonarlo en cualquier máquina:
+
+### Opción A: Script Automático (Recomendado)
+
+* **En Windows**: Haz doble clic en [`start.bat`](start.bat) o ejecútalo desde tu terminal:
+  ```powershell
+  .\start.bat
+  ```
+  *(Crea el entorno virtual `.venv` automáticamente, instala dependencias, inicializa `.env` y despliega el menú de inicio).*
+
+* **En Linux / macOS**: Ejecuta el lanzador universal:
+  ```bash
+  chmod +x start.sh
+  ./start.sh
+  ```
+
+### Opción B: Despliegue con Docker Compose
+
+Si cuentas con Docker instalado, puedes levantar tanto el backend Python como n8n con un solo comando:
+```bash
+docker compose up -d
+```
+* **n8n UI**: `http://localhost:5678`
+* **Python API**: `http://localhost:8000`
+
+---
+
+## 🔐 Gestión de Licencias y Credenciales 100% Locales
+
+> **Privacidad Absoluta**: Toda la herramienta es un **agente estrictamente local**. Tus credenciales de WhatsApp, tokens de Twilio, webhooks de Discord y cuentas de correo **nunca se envían a servidores de terceros ni a la nube**.
+
+El proyecto incluye un asistente interactivo por consola para vincular tus licencias y cuentas sin editar archivos manualmente:
 
 ```powershell
-# Ubicarse en el directorio backend
-cd backend
+# Iniciar el asistente interactivo de credenciales
+python backend/run_service.py --configure
 
-# Crear entorno virtual e instalar dependencias
+# Comprobar el estado de vinculación (con claves enmascaradas)
+python backend/run_service.py --credentials
+```
+
+Para una guía detallada sobre cómo vincular cuentas de Gmail (OAuth/IMAP), Meta Cloud API y Twilio, consulta [`docs/CREDENTIALS_AND_ACCOUNTS.md`](docs/CREDENTIALS_AND_ACCOUNTS.md).
+
+---
+
+## 🚀 Instalación y Pruebas Manuales (Paso a Paso)
+
+### 1. Configurar Entorno Virtual
+```powershell
+cd backend
 python -m venv .venv
 .\.venv\Scripts\pip install -r requirements.txt
 ```
 
-### 2. Ejecutar Pruebas y Laboratorio Demo (1 Clic)
-
-Puedes validar el funcionamiento completo de los 18 tests y ver una simulación real con el laboratorio interactivo:
-
+### 2. Ejecutar Pruebas y Laboratorio Demo
 ```powershell
-# Ejecutar suite de pruebas unitarias e integración
+# Ejecutar suite de pruebas unitarias e integración (18 tests)
 .\.venv\Scripts\pytest -v
 
-# Ejecutar el laboratorio de demostración end-to-end
+# Ejecutar el laboratorio interactivo end-to-end
 .\.venv\Scripts\python test_lab.py
 ```
 
-### 3. Iniciar el Servidor y n8n
-
+### 3. Iniciar Servicios
 ```powershell
-# En una terminal: Iniciar API Python
+# Terminal 1: Iniciar API Python
 .\.venv\Scripts\python run_service.py --serve
 
-# En otra terminal: Iniciar n8n nativamente con Node.js
+# Terminal 2: Iniciar n8n nativamente
 npx n8n
 ```
-
 1. Abre tu navegador en **`http://localhost:5678`**.
 2. Dirígete a **Workflows** ➔ **Import from File**.
 3. Selecciona `workflows/email_analyzer_workflow.json` y `workflows/whatsapp_bidirectional_bot_workflow.json`.
@@ -128,12 +168,12 @@ npx n8n
 ## 📂 Estructura del Repositorio
 
 ```text
-n8n/
+.
 ├── backend/
 │   ├── src/
-│   │   ├── api.py                      # Endpoints FastAPI para n8n
+│   │   ├── api.py                      # Endpoints FastAPI para n8n (/credentials, /status, etc.)
 │   │   ├── command_handler.py          # Lógica de comandos interactivos de WhatsApp
-│   │   ├── config.py                   # Configuración y variables de entorno
+│   │   ├── config.py                   # Configuración y variables de entorno flexibles
 │   │   ├── database.py                 # Persistencia SQLite local
 │   │   ├── duplicate_finder.py         # Hashing SHA-256/MD5 en bloques para duplicados
 │   │   ├── email_parser.py             # Parser de cadenas, archivos .eml y HTML
@@ -149,17 +189,22 @@ n8n/
 │   ├── data/
 │   │   ├── samples/                    # Muestras reales (.json y .eml)
 │   │   ├── attachments/                # Archivos de prueba para escaneo
-│   │   └── quarantine/                 # Bóveda de correos maliciosos aislados
+│   │   └── quarantine/                 # Bóveda de correos maliciosos aislados (.gitkeep)
+│   ├── Dockerfile                      # Imagen ligera de contenedor Python
 │   ├── test_lab.py                     # Demostración E2E con 1 comando
-│   ├── run_service.py                  # CLI runner del microservicio
+│   ├── run_service.py                  # CLI runner con asistente --configure
 │   └── requirements.txt                # Dependencias fijadas
 ├── workflows/
 │   ├── email_analyzer_workflow.json    # Workflow n8n principal de análisis y ruteo
 │   └── whatsapp_bidirectional_bot_workflow.json # Workflow n8n del bot de WhatsApp
 ├── docs/
 │   ├── ARCHITECTURE.md                 # Especificación técnica de arquitectura
+│   ├── CREDENTIALS_AND_ACCOUNTS.md     # Guía de licencias, cuentas de correo y privacidad local
 │   ├── REGEX_AND_HASHING.md            # Guía detallada de expresiones regulares y hashes
 │   └── N8N_SETUP_GUIDE.md              # Manual de configuración local de n8n
+├── docker-compose.yml                  # Despliegue de 1 comando (Backend + n8n)
+├── start.bat                           # Lanzador interactivo automático para Windows
+├── start.sh                            # Lanzador interactivo automático para Linux/macOS
 ├── .env.example                        # Plantilla de variables de entorno
 ├── LICENSE                             # Licencia Apache 2.0
 └── README.md                           # Documentación principal

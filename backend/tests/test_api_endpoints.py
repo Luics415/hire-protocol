@@ -22,6 +22,15 @@ def test_api_status_endpoint():
     assert "database_stats" in data
 
 
+def test_api_credentials_endpoint():
+    response = client.get("/credentials")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "ready"
+    assert "whatsapp_provider" in data
+    assert "security_note" in data
+
+
 def test_api_analyze_interview_sample():
     sample_file = SAMPLES_DIR / "sample_01_interview_mercadolibre.json"
     with open(sample_file, "r", encoding="utf-8") as f:
