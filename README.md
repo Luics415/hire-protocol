@@ -7,6 +7,10 @@
 [![Tests](https://img.shields.io/badge/Tests-22%20Passed%20(100%25)-success.svg)]()
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
+<p align="center">
+  <img src="docs/images/cover-hire-protocol.jpg" alt="Hire Protocol Cover Banner" width="100%" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.5);" />
+</p>
+
 ---
 
 ## 📌 Descripción General
@@ -52,6 +56,12 @@ flowchart TD
     D -->|Descarte / Lista Negra| N["📁 Archivo Silencioso"]
 ```
 
+<p align="center">
+  <img src="docs/images/hire-protocol-n8n-workflow.jpg" alt="Lienzo de Orquestación Visual n8n" width="100%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+  <br>
+  <em>Lienzo de orquestación visual en n8n: Ingesta de correo, análisis con motor Python y ruteo a WhatsApp/Discord.</em>
+</p>
+
 ---
 
 ## 💻 Pilares Técnicos Implementados
@@ -84,6 +94,12 @@ El bot soporta interacción bidireccional completa. Puedes enviarle cualquiera d
 | **`!ignorar <email/dominio>`** | Añade un remitente o dominio spammer a tu lista negra personal. | `!ignorar spam-jobs.com` ➔ *Remitente bloqueado.* |
 | **`!silencio [horas]`** | Pausa temporalmente las alertas de WhatsApp durante reuniones o entrevistas. | `!silencio 2` ➔ *Modo silencio activo hasta las 19:30.* |
 | **`!ayuda`** | Despliega la guía de comandos disponibles con formato amigable. | *Menú interactivo de ayuda.* |
+
+<p align="center">
+  <img src="docs/images/hire-protocol-whatsapp-bot.jpg" alt="Bot Bidireccional de WhatsApp & Alerta de Phishing" width="360" style="border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.5);" />
+  <br>
+  <em>Interacción real con el bot de WhatsApp: Consultas de estado y alerta crítica de phishing aislado en cuarentena.</em>
+</p>
 
 ---
 
@@ -121,6 +137,12 @@ docker compose up -d
 ## 🔍 Hub Interactivo & Buscador de Herramientas desde la Terminal
 
 Al ejecutar [`start.bat`](start.bat), [`start.sh`](start.sh) o `python backend/run_service.py`, Hire Protocol despliega su **Hub & Buscador Interactivo**:
+
+<p align="center">
+  <img src="docs/images/hire-protocol-terminal-hub.jpg" alt="Hire Protocol Terminal Hub & Buscador de Herramientas" width="100%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);" />
+  <br>
+  <em>Consola interactiva de Hire Protocol: Búsqueda dinámica de herramientas en tiempo real y persistencia local.</em>
+</p>
 
 ```text
 ========================================================================
