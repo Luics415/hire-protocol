@@ -1,0 +1,234 @@
+{
+  "name": "Analizador Inteligente de Correos y Postulaciones",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "email-inbox",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e44d32a0-7b56-42d1-8178-65b1617498c1",
+      "name": "Webhook Entrada Correo",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "webhookId": "email-inbox-trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/analyze-email",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"sender\": \"{{ $json.body.sender || $json.body.from }}\",\n  \"recipient\": \"{{ $json.body.recipient || $json.body.to || '' }}\",\n  \"subject\": \"{{ $json.body.subject || '' }}\",\n  \"text\": \"{{ $json.body.text || $json.body.body_plain || '' }}\",\n  \"html\": \"{{ $json.body.html || $json.body.body_html || '' }}\",\n  \"spf_pass\": {{ $json.body.spf_pass !== undefined ? $json.body.spf_pass : true }},\n  \"dkim_pass\": {{ $json.body.dkim_pass !== undefined ? $json.body.dkim_pass : true }}\n}",
+        "options": {}
+      },
+      "id": "9964522f-d5b7-4c48-8df0-e836bfa58123",
+      "name": "Motor de Seguridad Python",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "PHISHING",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Phishing"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "JOB_UPDATE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Postulación"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "IGNORED",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Ignorado"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "92da1577-8d02-4fc8-80f4-5f5323a67d5e",
+      "name": "Switch Ruteo de Correo",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "message": "={{ $json.whatsapp_alert.full_message || 'Alerta de Phishing detectada' }}",
+        "additionalFields": {}
+      },
+      "id": "bfa8618e-4a69-42b7-8ab0-1493b865ce3a",
+      "name": "Alerta Crítica WhatsApp",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [940, 160]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "message": "={{ $json.whatsapp_notification.full_message || 'Actualización de postulación' }}",
+        "additionalFields": {}
+      },
+      "id": "31b147e8-466d-476c-8438-bb4eeb46be7a",
+      "name": "Notificación WhatsApp Empleo",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [940, 300]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "787c88b6-9430-4e4b-9723-9562725fa295",
+      "name": "Responder OK a n8n",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1180, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Entrada Correo": {
+      "main": [
+        [
+          {
+            "node": "Motor de Seguridad Python",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Motor de Seguridad Python": {
+      "main": [
+        [
+          {
+            "node": "Switch Ruteo de Correo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Ruteo de Correo": {
+      "main": [
+        [
+          {
+            "node": "Alerta Crítica WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notificación WhatsApp Empleo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder OK a n8n",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder OK a n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alerta Crítica WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Responder OK a n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notificación WhatsApp Empleo": {
+      "main": [
+        [
+          {
+            "node": "Responder OK a n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "sender": "seguridad@banc0-santander-alerta.com",
+  "recipient": "luics.dev@gmail.com",
+  "subject": "URGENTE: Su cuenta bancaria será suspendida en 24 horas - Verifique su identidad",
+  "text": "Estimado cliente,\n\nHemos detectado un acceso no autorizado a su banca digital. Por motivos de seguridad su cuenta será bloqueada inmediatamente a menos que verifique su identidad en las próximas 24 horas.\n\nPor favor ingrese su contraseña y actualice sus datos bancarios en el siguiente enlace oficial:\nhttps://www.santander.com.mx/seguridad\n\nAtentamente,\nDepartamento de Prevención de Fraudes",
+  "html": "<p>Estimado cliente,</p><p>Acceso no autorizado detectado.</p><p><a href=\"http://185.220.101.5/santander-fake-login/index.php\">https://www.santander.com.mx/seguridad</a></p>",
+  "spf_pass": false,
+  "dkim_pass": false
+}

@@ -1,0 +1,9 @@
+{
+  "sender": "talent-acquisition@mercadolibre.com",
+  "recipient": "luics.dev@gmail.com",
+  "subject": "Invitación a entrevista técnica - Backend Software Engineer en Mercado Libre",
+  "text": "Hola Luis,\n\nRevisamos tu postulación para la vacante de Backend Software Engineer y nos encantó tu perfil. Queremos invitarte a una entrevista técnica inicial con nuestro equipo de arquitectura.\n\nDetalles de la posición:\n- Rango Salarial: $4,000 - $5,500 USD mensuales\n- Modalidad: 100% Remoto (Home Office)\n- Stack: Python, FastAPI, Docker, AWS, PostgreSQL y Kubernetes\n\nPor favor selecciona el horario que mejor te convenga en el siguiente enlace de Google Meet:\nhttps://meet.google.com/mel-tech-interview\n\nSaludos cordiales,\nEquipo de Atracción de Talento | Mercado Libre",
+  "html": "<p>Hola Luis,</p><p>Revisamos tu postulación para la vacante de <b>Backend Software Engineer</b>...</p>",
+  "spf_pass": true,
+  "dkim_pass": true
+}

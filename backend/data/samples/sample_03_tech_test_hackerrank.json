@@ -1,0 +1,9 @@
+{
+  "sender": "noreply@hackerrank.net",
+  "recipient": "luics.dev@gmail.com",
+  "subject": "Evaluación técnica de programación para Nubank",
+  "text": "Hola Luis,\n\nNubank te ha invitado a resolver una prueba técnica de código para la posición de Backend Developer.\n\nTienes un plazo de 72 horas para ingresar y completar la evaluación. El desafío consta de 2 problemas algorítmicos en Python y diseño de API.\n\nAccede a tu prueba técnica en HackerRank aquí:\nhttps://www.hackerrank.com/tests/nubank-backend-challenge-2026\n\n¡Mucho éxito!",
+  "html": "<p>Nubank te ha invitado a resolver una <b>prueba técnica</b>...</p>",
+  "spf_pass": true,
+  "dkim_pass": true
+}

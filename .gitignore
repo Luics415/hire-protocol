@@ -1,0 +1,44 @@
+# Entorno Virtual Python
+.venv/
+env/
+venv/
+ENV/
+
+# Byte-compiled / optimizados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest / Pruebas / Cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Base de datos SQLite local
+*.sqlite3
+*.sqlite3-journal
+
+# Variables de entorno secretas (preservando .env.example)
+.env
+.env*.local
+.env.production
+.env.development
+
+# Carpetas de datos locales temporales y reportes de ejecución
+backend/data/reports/*
+!backend/data/reports/.gitkeep
+backend/data/reports/duplicates_backup/*
+!backend/data/reports/duplicates_backup/.gitkeep
+backend/data/quarantine/*
+!backend/data/quarantine/.gitkeep
+
+# IDEs y Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini

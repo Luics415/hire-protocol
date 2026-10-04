@@ -1,0 +1,9 @@
+{
+  "sender": "jobs-listings@linkedin.com",
+  "recipient": "luics.dev@gmail.com",
+  "subject": "Tu postulación para Senior Cloud Engineer en Globant",
+  "text": "Tu postulación ha sido enviada con éxito.\n\nGlobant ha recibido tu candidatura para el puesto de Senior Cloud Engineer. Te notificaremos si el equipo de reclutamiento decide coordinar los siguientes pasos.\n\nSalario estimado: 65,000 - 80,000 MXN netos mensuales\nModalidad: Híbrido\nTecnologías requeridas: AWS, Terraform, Docker, Python, Linux, CI/CD\n\nGracias por usar LinkedIn Jobs.",
+  "html": "<p>Tu postulación ha sido enviada con éxito.</p>",
+  "spf_pass": true,
+  "dkim_pass": true
+}

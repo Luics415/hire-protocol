@@ -1,0 +1,73 @@
+{
+  "name": "Bot Bidireccional de WhatsApp - Asistente de Postulaciones",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whatsapp-command",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "b182cb20-6d4b-4b2e-a342-6e2101347091",
+      "name": "Webhook Mensaje Entrante WhatsApp",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "webhookId": "whatsapp-bot-trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/whatsapp-command",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $json.body.message || $json.body.Body || $json.body.text }}\",\n  \"sender_number\": \"{{ $json.body.from || $json.body.From || '' }}\"\n}",
+        "options": {}
+      },
+      "id": "672b1bb9-6338-4fbe-9b2e-1317521ab251",
+      "name": "Intérprete de Comandos Python",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"reply\": {{ JSON.stringify($json.reply) }}\n}",
+        "options": {}
+      },
+      "id": "fe1c045b-381c-43df-9e48-e4b7bca06129",
+      "name": "Respuesta al Usuario de WhatsApp",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Mensaje Entrante WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Intérprete de Comandos Python",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intérprete de Comandos Python": {
+      "main": [
+        [
+          {
+            "node": "Respuesta al Usuario de WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
