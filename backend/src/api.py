@@ -25,8 +25,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Email Security & Job Tracker API",
-    description="Motor en Python para análisis de correos, detección de phishing y postulaciones conectado a n8n.",
+    title="Hire Protocol API",
+    description="Motor local en Python para análisis forense de correos, detección de phishing y seguimiento de postulaciones conectado a n8n.",
     version="1.0.0",
     lifespan=lifespan
 )

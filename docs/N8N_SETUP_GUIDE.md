@@ -1,6 +1,6 @@
-# Guía de Puesta en Marcha: Orquestación con n8n
+# Hire Protocol: Guía de Orquestación con n8n
 
-Esta guía explica cómo ejecutar n8n en tu entorno local (Windows) e importar los flujos automatizados de análisis de correos y bot de WhatsApp.
+Esta guía explica cómo ejecutar n8n en tu entorno local e importar los flujos automatizados de Hire Protocol para análisis de correos y bot de WhatsApp.
 
 ---
 

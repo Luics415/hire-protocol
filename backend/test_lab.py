@@ -27,7 +27,7 @@ client = TestClient(app)
 
 def run_laboratory():
     print("=" * 70)
-    print("🧪 LABORATORIO DE PRUEBAS: EMAIL SECURITY & JOB AGENT")
+    print("🧪 LABORATORIO DE PRUEBAS: HIRE PROTOCOL")
     print("=" * 70)
 
     # 1. Limpiar estado previo

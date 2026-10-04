@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # ======================================================================
-#   🛡️  JOB SECURITY & APPLICATION TRACKING AGENT - LAUNCHER
-#   Script de inicio universal para Linux y macOS
+#   🛡️  HIRE PROTOCOL - LAUNCHER UNIVERSAL (Linux / macOS)
+#   Agente Local de Empleo, Antiphishing y Orquestador n8n
 # ======================================================================
 
 set -e
 
 echo "======================================================================"
-echo "  🛡️  JOB SECURITY & APPLICATION TRACKING AGENT"
-echo "  Agente Local de Empleo, Antiphishing y Orquestador n8n"
+echo "  🛡️  HIRE PROTOCOL - LOCAL AGENT & TOOL HUB"
+echo "  Agente Inteligente de Postulaciones, Antiphishing y Orquestador n8n"
 echo "======================================================================"
 echo ""
 
@@ -47,11 +47,11 @@ fi
 
 echo ""
 echo "======================================================================"
-echo "  Selecciona una opción:"
+echo "  Selecciona una opción de Hire Protocol:"
 echo "======================================================================"
-echo "  [1] Iniciar Servidor Backend (FastAPI en http://127.0.0.1:8000)"
-echo "  [2] Asistente de Licencias y Credenciales (--configure)"
-echo "  [3] Ver Estado de Credenciales Locales (--credentials)"
+echo "  [1] Abrir Hub Interactivo & Buscador de Herramientas (Recomendado)"
+echo "  [2] Iniciar Servidor Directamente (FastAPI en http://127.0.0.1:8000)"
+echo "  [3] Ver Estado Seguro de Credenciales Locales (--credentials)"
 echo "  [4] Ejecutar Suite de Pruebas (pytest)"
 echo "  [5] Ejecutar Laboratorio Demo (test_lab.py)"
 echo "  [6] Iniciar n8n nativamente (npx n8n)"
@@ -63,12 +63,12 @@ opt=${opt:-1}
 case "$opt" in
     1)
         echo ""
-        echo "[INFO] Iniciando microservicio FastAPI..."
-        ./backend/.venv/bin/python backend/run_service.py --serve
+        ./backend/.venv/bin/python backend/run_service.py
         ;;
     2)
         echo ""
-        ./backend/.venv/bin/python backend/run_service.py --configure
+        echo "[INFO] Iniciando microservicio FastAPI de Hire Protocol..."
+        ./backend/.venv/bin/python backend/run_service.py --serve
         ;;
     3)
         echo ""

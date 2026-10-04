@@ -285,3 +285,35 @@ class DatabaseManager:
             cursor.execute("DELETE FROM settings WHERE key = 'silence_until'")
             conn.commit()
 
+    @classmethod
+    def set_setting(cls, key: str, value: str):
+        """Guarda permanentemente una clave de configuración en SQLite."""
+        cls.init_db()
+        with cls.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT INTO settings (key, value) VALUES (?, ?)
+                ON CONFLICT(key) DO UPDATE SET value = excluded.value
+            """, (key, value))
+            conn.commit()
+
+    @classmethod
+    def get_setting(cls, key: str, default: Optional[str] = None) -> Optional[str]:
+        """Recupera un valor de configuración almacenado permanentemente."""
+        cls.init_db()
+        with cls.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT value FROM settings WHERE key = ?", (key,))
+            row = cursor.fetchone()
+            return row[0] if row else default
+
+    @classmethod
+    def get_all_settings(cls) -> Dict[str, str]:
+        """Recupera todas las configuraciones guardadas en la base de datos."""
+        cls.init_db()
+        with cls.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT key, value FROM settings")
+            return {r[0]: r[1] for r in cursor.fetchall()}
+
+

@@ -1,10 +1,10 @@
 @echo off
 chcp 65001 >nul
-title Job Security & Application Tracking Agent - Launcher
+title Hire Protocol - Local Security & Career Agent Launcher
 
 echo ======================================================================
-echo   🛡️  JOB SECURITY ^& APPLICATION TRACKING AGENT
-echo   Agente Local de Empleo, Antiphishing y Orquestador n8n
+echo   🛡️  HIRE PROTOCOL - LOCAL AGENT ^& TOOL HUB
+echo   Agente Inteligente de Postulaciones, Antiphishing y Orquestador n8n
 echo ======================================================================
 echo.
 
@@ -39,11 +39,11 @@ if not exist "backend\.env" (
 
 echo.
 echo ======================================================================
-echo   Selecciona una opción:
+echo   Selecciona una opción de Hire Protocol:
 echo ======================================================================
-echo   [1] Iniciar Servidor Backend (FastAPI en http://127.0.0.1:8000)
-echo   [2] Asistente de Licencias y Credenciales (--configure)
-echo   [3] Ver Estado de Credenciales Locales (--credentials)
+echo   [1] Abrir Hub Interactivo ^& Buscador de Herramientas (Recomendado)
+echo   [2] Iniciar Servidor Directamente (FastAPI en http://127.0.0.1:8000)
+echo   [3] Ver Estado Seguro de Credenciales Locales (--credentials)
 echo   [4] Ejecutar Suite de Pruebas (pytest)
 echo   [5] Ejecutar Laboratorio Demo (test_lab.py)
 echo   [6] Iniciar n8n nativamente (npx n8n)
@@ -52,24 +52,23 @@ echo ======================================================================
 set /p opt="Opción elegida [1]: "
 
 if "%opt%"=="" set opt=1
-if "%opt%"=="1" goto serve
-if "%opt%"=="2" goto config
+if "%opt%"=="1" goto hub
+if "%opt%"=="2" goto serve
 if "%opt%"=="3" goto creds
 if "%opt%"=="4" goto test
 if "%opt%"=="5" goto lab
 if "%opt%"=="6" goto n8n
 if "%opt%"=="0" exit /b 0
 
-:serve
+:hub
 echo.
-echo [INFO] Iniciando microservicio FastAPI...
-call backend\.venv\Scripts\python backend\run_service.py --serve
+call backend\.venv\Scripts\python backend\run_service.py
 goto end
 
-:config
+:serve
 echo.
-call backend\.venv\Scripts\python backend\run_service.py --configure
-pause
+echo [INFO] Iniciando microservicio FastAPI de Hire Protocol...
+call backend\.venv\Scripts\python backend\run_service.py --serve
 goto end
 
 :creds

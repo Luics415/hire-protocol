@@ -1,8 +1,8 @@
-# Especificación Técnica de Arquitectura: Email Security & Job Tracker Agent
+# Especificación Técnica de Arquitectura: Hire Protocol
 
 ## 1. Visión y Objetivos
 
-Este sistema automatiza la gestión personal de correos vinculados a procesos de selección y postulaciones laborales, integrando simultáneamente un motor forense de detección de ciberamenazas y phishing, y una herramienta de deduplicación de almacenamiento.
+**Hire Protocol** automatiza la gestión personal de correos vinculados a procesos de selección y postulaciones laborales, integrando simultáneamente un motor forense de detección de ciberamenazas y phishing, un hub interactivo de herramientas locales y deduplicación criptográfica de almacenamiento.
 
 ### Principios de Diseño
 - **No Invasivo**: El agente **no responde** automáticamente a los correos para evitar enviar respuestas erróneas o no profesionales a reclutadores.

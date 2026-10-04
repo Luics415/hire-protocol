@@ -1,24 +1,27 @@
-# 🛡️ Job Security & Application Tracking Agent
-### *Agente Inteligente de Postulaciones Laborales, Detección de Phishing y Deduplicación Criptográfica*
+# 🛡️ Hire Protocol
+### *Agente Local Inteligente de Postulaciones Laborales, Detección Forense de Phishing y Deduplicación Criptográfica*
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue.svg?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![n8n](https://img.shields.io/badge/n8n-Orchestration-FF6D5A.svg?logo=n8n&logoColor=white)](https://n8n.io)
-[![Tests](https://img.shields.io/badge/Tests-19%20Passed%20(100%25)-success.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-22%20Passed%20(100%25)-success.svg)]()
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ---
 
 ## 📌 Descripción General
 
-**Job Security & Application Tracking Agent** es una solución técnica integral y personal diseñada para automatizar la monitorización y seguimiento de procesos de selección laboral sin interactuar ni responder automáticamente a los reclutadores, garantizando discreción absoluta.
+**Hire Protocol** es un agente técnico autónomo y estrictamente local diseñado para automatizar la monitorización y seguimiento de procesos de selección laboral sin interactuar ni responder automáticamente a los reclutadores, garantizando privacidad y discreción absoluta.
 
-El agente combina la potencia de **n8n** como orquestador de eventos y flujos de mensajería con un núcleo en **Python** especializado en:
-1. **Detección Heurística de Phishing y Ciberamenazas**: Análisis forense de cabeceras, enlaces con spoofing visual y patrones de intimidación o estafas laborales.
-2. **Clasificación Inteligente de Vacantes**: Identificación de bolsas de trabajo (LinkedIn, Indeed, Computrabajo) y ATS corporativos (Workday, Greenhouse, Lever), extrayendo automáticamente **salario**, **modalidad** y **stack tecnológico**.
-3. **Buscador Criptográfico de Archivos Duplicados**: Escáner de almacenamiento en bloques de 64 KB con hashing MD5 y SHA-256 para depurar versiones redundantes de CVs y adjuntos de correo.
-4. **Interacción Bidireccional en WhatsApp**: Control total del asistente vía comandos interactivos (`!resumen`, `!estado`, `!pendientes`, `!analizar`, `!duplicados`, `!limpiar`, etc.).
-5. **Bitácora Técnica en Discord**: Registro en segundo plano con embeds detallados para no saturar tu mensajería personal.
+El sistema cuenta con un **Hub interactivo y Buscador de Herramientas desde la terminal**, permitiendo conectar y probar WhatsApp, buzones de correo (IMAP/Gmail), Discord y n8n, asegurando su persistencia en disco (SQLite y `.env`) para que tus conexiones sigan vigentes cada vez que apagues y enciendas tu computadora.
+
+El protocolo combina la orquestación de **n8n** con un núcleo en **Python** especializado en:
+1. **Hub y Buscador de Herramientas en Terminal**: Panel interactivo con búsqueda en tiempo real de integraciones y persistencia permanente indestructible.
+2. **Detección Heurística de Phishing y Ciberamenazas**: Análisis forense de cabeceras, enlaces con spoofing visual y patrones de intimidación o estafas laborales.
+3. **Clasificación Inteligente de Vacantes**: Identificación de bolsas de trabajo (LinkedIn, Indeed, Computrabajo) y ATS corporativos (Workday, Greenhouse, Lever), extrayendo automáticamente **salario**, **modalidad** y **stack tecnológico**.
+4. **Buscador Criptográfico de Archivos Duplicados**: Escáner de almacenamiento en bloques de 64 KB con hashing MD5 y SHA-256 para depurar versiones redundantes de CVs y adjuntos de correo.
+5. **Interacción Bidireccional en WhatsApp**: Control total del asistente vía comandos interactivos (`!resumen`, `!estado`, `!pendientes`, `!analizar`, `!duplicados`, `!limpiar`, etc.).
+6. **Bitácora Técnica en Discord**: Registro en segundo plano con embeds detallados para no saturar tu mensajería personal.
 
 ---
 
@@ -115,11 +118,44 @@ docker compose up -d
 
 ---
 
+## 🔍 Hub Interactivo & Buscador de Herramientas desde la Terminal
+
+Al ejecutar [`start.bat`](start.bat), [`start.sh`](start.sh) o `python backend/run_service.py`, Hire Protocol despliega su **Hub & Buscador Interactivo**:
+
+```text
+========================================================================
+  🛡️  HIRE PROTOCOL - HUB INTERACTIVO & BUSCADOR DE HERRAMIENTAS
+========================================================================
+ℹ️  Tus herramientas conectadas se guardan de forma permanente en tu máquina.
+   Seguirán vinculadas mañana al reiniciar tu computadora (100% Local y Privado).
+
+HERRAMIENTAS INTEGRADAS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ [1] ✅ WhatsApp Bot Gateway             | Mensajería y Alertas | Mock Local Activo
+ [2] ⚪ Servicio de Correo (IMAP/Gmail)  | Buzón de Entrada     | Vía n8n (Modo Webhook)
+ [3] ✅ Discord Security Logger          | Bitácora Forense     | Webhook Activo
+ [4] ✅ Orquestador n8n                  | Automatización       | Vinculado (http://localhost:5678)
+ [5] ✅ Motor Antiphishing & Cuarentena  | Seguridad Heurística | Activo (Umbral: 4.0 / 7.0)
+ [6] ✅ Deduplicador Criptográfico       | Almacenamiento Local | Activo (Bloques: 64 KB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ACCIONES:
+ [S] 🚀 Iniciar Servidor Hire Protocol (FastAPI)
+ [B] 🔍 Buscar Herramientas por Nombre o Etiqueta
+ [T] 🧪 Ejecutar Suite de Pruebas y Laboratorio Demo
+ [0] 🚪 Salir
+========================================================================
+```
+
+* **Búsqueda en tiempo real**: Escribe términos como `whatsapp`, `correo`, `discord`, `hash` para filtrar herramientas al instante.
+* **Persistencia permanente indestructible**: Los tokens y credenciales se guardan automáticamente en tu archivo `.env` y en la base SQLite local (`settings`). Puedes apagar la máquina y mañana tus conexiones seguirán listas sin necesidad de reconfigurar.
+
+---
+
 ## 🔐 Gestión de Licencias y Credenciales 100% Locales
 
 > **Privacidad Absoluta**: Toda la herramienta es un **agente estrictamente local**. Tus credenciales de WhatsApp, tokens de Twilio, webhooks de Discord y cuentas de correo **nunca se envían a servidores de terceros ni a la nube**.
 
-El proyecto incluye un asistente interactivo por consola para vincular tus licencias y cuentas sin editar archivos manualmente:
+El proyecto incluye el asistente interactivo por consola para vincular tus licencias y cuentas sin editar archivos manualmente:
 
 ```powershell
 # Iniciar el asistente interactivo de credenciales
