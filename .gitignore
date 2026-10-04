@@ -15,8 +15,11 @@ __pycache__/
 htmlcov/
 
 # Base de datos SQLite local
+*.sqlite
 *.sqlite3
 *.sqlite3-journal
+*.sqlite-wal
+*.sqlite-shm
 
 # Variables de entorno secretas (preservando .env.example)
 .env
